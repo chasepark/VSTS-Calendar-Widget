@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <script src="bower_components/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+     <script type="text/javascript">
+        VSS.init({
+            explicitNotifyLoaded: true,
+			usePlatformStyles: true
+        });
+        VSS.require("TFS/Dashboards/WidgetHelpers", function (WidgetHelpers) {
+			WidgetHelpers.IncludeWidgetStyles();
+         VSS.register("CalendarWidget", function () {                
+                return {
+                    load: function (widgetSettings) {
+                        var $title = $('h2.title');
+                        var $calendarElement = $('div#calendar');
+                        $title.text('Upcoming Events');
+                        $calendarElement.fullCalendar({
+
+                        });
+
+                        return WidgetHelpers.WidgetStatusHelper.Success();
+                    }
+                }
+            });
+            VSS.notifyLoadSucceeded();
+        });
+
+</script>
+    
+</head>
+<body>
+    <div class="widget">
+        <h2 class="title"></h2>
+        <div id="calendar"></div>
+    </div>
+    
+</body>
+</html>
